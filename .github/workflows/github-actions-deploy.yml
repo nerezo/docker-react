@@ -6,17 +6,21 @@ name: ci-deployment
   pull_request:
     branches:
       - main
+
 jobs:
   build:
     runs-on: ubuntu-latest
+    steps:
 
-  steps:
       - name: Checkout source code.
         uses: actions/checkout@v2
+
       - name: Create the docker container.
         run: docker build -t nerezo/docker-react -f Dockerfile.dev .
+
       - name: Run the tests with the coverage report.
         run: docker run -e CI=true nerezo/docker-react npm run test -- --coverage
+
       - name: Deploy to EB
         uses: einaregilsson/beanstalk-deploy@v20
         with:
