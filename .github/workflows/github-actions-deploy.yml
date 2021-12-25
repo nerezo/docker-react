@@ -1,4 +1,4 @@
-name: docker-react test and deployment workflow
+name: ci-deployment
 'on':
   push:
     branches:
