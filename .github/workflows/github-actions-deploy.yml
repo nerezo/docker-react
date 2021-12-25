@@ -25,9 +25,10 @@ jobs:
         uses: einaregilsson/beanstalk-deploy@v20
         with:
           region: us-east-2
-          application_name: docker
+          application_name: docker-react
           environment_name: Docker-env
           existing_bucket_name: elasticbeanstalk-us-east-2-584991124710
+          version_label: ${{ github.run_number }}
           aws_access_key: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws_secret_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           deployment_package: .*
