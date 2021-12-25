@@ -1,9 +1,0 @@
-sudo: required
-services:
-  - docker
-
-before_install:
-  - docker build -t nerezo/docker-react -f Dockerfile.dev .
-
-script:
-  - docker run -e CI=true nerezo/docker-react npm run test -- --coverage

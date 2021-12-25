@@ -1,0 +1,20 @@
+name: CI Workflow
+'on':
+  push:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - master
+jobs:
+  Build:
+    runs-on: '${{ matrix.os }}'
+    strategy:
+      matrix:
+        os:
+          - ubuntu-18.04
+    steps:
+      - uses: actions/checkout@v2
+      - run: docker build -t nerezo/docker-react -f Dockerfile.dev .
+      - run: docker run -e CI=true nerezo/docker-react npm run test -- --coverage
+
