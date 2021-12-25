@@ -21,6 +21,9 @@ jobs:
       - name: Run the tests with the coverage report.
         run: docker run -e CI=true nerezo/docker-react npm run test -- --coverage
 
+      - name: Generate deployment package
+        run: docker run -e CI=true nerezo/docker-react npm run build
+
       - name: Deploy to EB
         uses: einaregilsson/beanstalk-deploy@v20
         with:
@@ -31,4 +34,4 @@ jobs:
           version_label: ${{ github.run_number }}
           aws_access_key: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws_secret_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          deployment_package: .*
+          deployment_package: build
