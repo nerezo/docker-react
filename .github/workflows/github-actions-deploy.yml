@@ -28,7 +28,7 @@ jobs:
           application_name: docker
           environment_name: Docker-env
           existing_bucket_name: elasticbeanstalk-us-east-2-584991124710
-          version_label: 987654321
-          use_existing_version_if_available: true
+          version_label: ${{ github.sha }}
           aws_access_key: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws_secret_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          deployment_package: docker-react
